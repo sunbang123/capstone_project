@@ -40,7 +40,7 @@ public class UIManager
         if (cs != null)
         {
             cs.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            cs.referenceResolution = new Vector2(1080, 1920);
+            cs.referenceResolution = new Vector2(2160, 1080);
         }
 
         go.GetOrAddComponent<GraphicRaycaster>();
@@ -127,6 +127,11 @@ public class UIManager
         go.transform.SetParent(Root.transform);
 
         return popup;
+    }
+
+    public IEnumerable<UI_Popup> GetPopupStack()
+    {
+        return _popupStack;
     }
 
     public void ClosePopupUI(UI_Popup popup)

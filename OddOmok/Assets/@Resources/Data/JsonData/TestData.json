@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "Id": 0,
+      "Name": "Kimhaneul",
+      "BlackGamePlayed": 100,
+      "WhiteGamePlayed": 100,
+      "BlackWins": 40,
+      "WhiteWins": 60
+    },
+    {
+      "Id": 1,
+      "Name": "Kimsunyoung",
+      "BlackGamePlayed": 100,
+      "WhiteGamePlayed": 100,
+      "BlackWins": 60,
+      "WhiteWins": 60
+    }
+  ]
+}

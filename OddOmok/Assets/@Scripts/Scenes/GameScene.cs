@@ -3,6 +3,8 @@ using static Define;
 
 public class GameScene : BaseScene
 {
+    private GameStateMachine _stateMachine;
+
     public override bool Init()
     {
         if (base.Init() == false)
@@ -10,7 +12,8 @@ public class GameScene : BaseScene
 
         SceneType = EScene.GameScene;
 
-        // TODO
+        _stateMachine = new GameStateMachine();
+        _stateMachine.ChangeState(new PlayerTurnState(_stateMachine));
 
         return true;
     }

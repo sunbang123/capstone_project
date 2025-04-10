@@ -59,11 +59,7 @@ public class ResourceManager
             return;
         }
 
-        string loadKey = key;
-        if (key.Contains(".sprite"))
-            loadKey = $"{key}[{key.Replace(".sprite", "")}]";
-
-        var asyncOperation = Addressables.LoadAssetAsync<T>(loadKey);
+        var asyncOperation = Addressables.LoadAssetAsync<T>(key);
         asyncOperation.Completed += (op) =>
         {
             _resources.Add(key, op.Result);
@@ -82,22 +78,11 @@ public class ResourceManager
 
             foreach (var result in op.Result)
             {
-                if (result.PrimaryKey.Contains(".sprite"))
+                LoadAsync<T>(result.PrimaryKey, (obj) =>
                 {
-                    LoadAsync<Sprite>(result.PrimaryKey, (obj) =>
-                    {
-                        loadCount++;
-                        callback?.Invoke(result.PrimaryKey, loadCount, totalCount);
-                    });
-                }
-                else
-                {
-                    LoadAsync<T>(result.PrimaryKey, (obj) =>
-                    {
-                        loadCount++;
-                        callback?.Invoke(result.PrimaryKey, loadCount, totalCount);
-                    });
-                }
+                    loadCount++;
+                    callback?.Invoke(result.PrimaryKey, loadCount, totalCount);
+                });
             }
         };
     }

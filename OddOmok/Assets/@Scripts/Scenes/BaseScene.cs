@@ -4,14 +4,14 @@ using static Define;
 
 public abstract class BaseScene : InitBase
 {
-    public EScene SceneType { get; protected set; } = EScene.Unknown;
+    public EScene SceneType { get; protected set; }
 
     public override bool Init()
     {
         if (base.Init() == false)
             return false;
 
-        Object obj = GameObject.FindObjectOfType(typeof(EventSystem));
+        Object obj = GameObject.Find("EventSystem");
         if (obj == null)
         {
             GameObject go = new GameObject() { name = "@EventSystem" };
@@ -22,5 +22,8 @@ public abstract class BaseScene : InitBase
         return true;
     }
 
-    public abstract void Clear();
+    public virtual void Clear()
+    {
+
+    }
 }

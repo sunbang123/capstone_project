@@ -5,11 +5,13 @@ public class UI_TitleScene : UI_Scene
 {
     enum GameObjects
     {
-        StartImage
+        Title,
+        StartImage,
     }
 
     enum Texts
     {
+        TitleText,
         DisplayText
     }
 
@@ -24,10 +26,10 @@ public class UI_TitleScene : UI_Scene
         GetObject((int)GameObjects.StartImage).BindEvent((evt) =>
         {
             Debug.Log("ChangeScene");
-            Managers.Scene.LoadScene(EScene.GameScene);
+            Managers.Scene.LoadScene(EScene.GameReadyScene);
         });
 
-        GetObject((int)GameObjects.StartImage).gameObject.SetActive(false);
+        GetText((int)GameObjects.StartImage).gameObject.SetActive(false);
         GetText((int)Texts.DisplayText).text = $"";
 
         StartLoadAssets();
@@ -43,11 +45,16 @@ public class UI_TitleScene : UI_Scene
 
             if (count == totalCount)
             {
-                //Managers.Data.Init();
+                Managers.Data.Init();
 
-                GetObject((int)GameObjects.StartImage).gameObject.SetActive(true);
+                GetText((int)GameObjects.StartImage).gameObject.SetActive(true);
                 GetText((int)Texts.DisplayText).text = $"Touch To Start";
+                // 애니메이션
+                UI_DOTween.ApplyFadeMovement(GetText((int)Texts.DisplayText), 1.0f);
             }
+
         });
+
+        
     }
 }
