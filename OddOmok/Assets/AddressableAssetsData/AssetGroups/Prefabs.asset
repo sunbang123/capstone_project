@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Prefabs
   m_GUID: 632aba6d70692bf44b7b3d92d3082806
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 1fecd30376ef8a14f8cd7f5d389a7b83
+    m_Address: '@PlayerCharacter'
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 711d9cff380172143bdf8115e75df111
+    m_Address: UI_MatchMakingPopup
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 167948889f9b1054b83667a38fc87057, type: 2}
   m_SchemaSet:

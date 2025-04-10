@@ -15,8 +15,44 @@ MonoBehaviour:
   m_GroupName: Sprites
   m_GUID: 3646eabaf9afdf94e80876b85f63e402
   m_SerializeEntries:
-  - m_GUID: 77b1f0be14e976646958f21b2ad578b1
+  - m_GUID: 01441af666ddac440a440bb01c76a3f6
+    m_Address: InitialBoard
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1efe5c77d72b18e4fb1882a7198a2cd3
+    m_Address: WhiteSlimeStone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 550129c05ac8c0b4584e3f321b8ebbf7
+    m_Address: GameSide
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6243b7caca93ca04d8a7339a2a4fe602
+    m_Address: GrassBackground
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f6576d286c8c904b855004972cc5b36
     m_Address: Title
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5367978781145842b71a5030605dd2d
+    m_Address: BlackSlimeStone
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7d3e66707fc78b42972ae462ab82518
+    m_Address: MagicZoneCheck
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

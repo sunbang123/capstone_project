@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Font
+  m_EditorClassIdentifier: 
+  m_GroupName: Font
+  m_GUID: 794ad75d6cbeae343bb31df45d0c0650
+  m_SerializeEntries:
+  - m_GUID: cdcec61ddeac92c4f863702ce190e114
+    m_Address: CookieRun Bold SDF
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 167948889f9b1054b83667a38fc87057, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 53b671bfab487424886917827b179a04, type: 2}
+    - {fileID: 11400000, guid: d6805743d68a10147b4f701dfeada123, type: 2}

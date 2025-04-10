@@ -4,8 +4,8 @@ public static class Define
 {
     public enum EScene
     {
-        Unknown,
         TitleScene,
+        GameReadyScene,
         GameScene,
     }
 
@@ -15,5 +15,12 @@ public static class Define
         PointerDown,
         PointerUp,
         Drag,
+    }
+
+    public enum ESound
+    {
+        Bgm,
+        Effect,
+        Max,
     }
 }
