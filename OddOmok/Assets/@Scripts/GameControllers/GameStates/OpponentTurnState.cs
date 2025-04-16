@@ -2,28 +2,32 @@ using UnityEngine;
 
 public class OpponentTurnState : IGameState
 {
-    public void Enter()
+    private GameStateMachine _stateMachine;
+    private UI_GameScene _uiGameScene;
+
+    public OpponentTurnState(GameStateMachine stateMachine, UI_GameScene uiGameScene)
     {
-        throw new System.NotImplementedException();
+        _stateMachine = stateMachine;
+        _uiGameScene = uiGameScene;
     }
 
-    public void Exit()
+    public void Enter() 
+    { 
+        Debug.Log("상대방 차례");
+        BoardManager.BM.OnStonePlaced += HandleStonePlace;
+    }
+    public void Update()
     {
-        throw new System.NotImplementedException();
+
+    }
+    public void Exit() 
+    {
+        BoardManager.BM.OnStonePlaced -= HandleStonePlace;
     }
 
-    void Start()
+    private void HandleStonePlace(int y, int x, BoardManager.StoneState state)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void IGameState.Update()
-    {
-        Update();
+        _uiGameScene.UpdateCell(y, x, state);
+        _stateMachine.ChangeState(new CheckVictoryState(_stateMachine, _uiGameScene, y, x, state));
     }
 }

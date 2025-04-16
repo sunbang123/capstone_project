@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Font
   m_GUID: 794ad75d6cbeae343bb31df45d0c0650
   m_SerializeEntries:
-  - m_GUID: cdcec61ddeac92c4f863702ce190e114
-    m_Address: CookieRun Bold SDF
+  - m_GUID: 3ebeba3eeeebaaa4da4582ec0f82d65c
+    m_Address: ownglyphmongmongdays SDF.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

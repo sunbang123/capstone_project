@@ -8,11 +8,13 @@ public interface IGameState
 }
 public class GameStateMachine
 {
-    private IGameState _currentState;
+    public IGameState _currentState { get; private set; }
+    public IGameState _previousState { get; private set; }
 
     public void ChangeState(IGameState newState)
     {
         _currentState?.Exit();
+        _previousState = (_currentState != null) ? _currentState : newState;
         _currentState = newState;
         _currentState.Enter();
     }

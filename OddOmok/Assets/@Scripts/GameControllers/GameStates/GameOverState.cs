@@ -2,28 +2,27 @@ using UnityEngine;
 
 public class GameOverState : IGameState
 {
-    public void Enter()
+    private GameStateMachine _stateMachine;
+    private UI_GameScene _uiGameScene;
+    private BoardManager.StoneState _winner;
+
+    public GameOverState(GameStateMachine stateMachine, UI_GameScene uiGameScene, BoardManager.StoneState state)
     {
-        throw new System.NotImplementedException();
+        _stateMachine = stateMachine;
+        _uiGameScene = uiGameScene;
+        _winner = state;
     }
 
-    public void Exit()
+    public void Enter() 
     {
-        throw new System.NotImplementedException();
+        Debug.Log($"게임 오버!\n{_winner} 승리!");
     }
-
-    void Start()
+    public void Exit() 
     {
-        
+    
     }
-
-    void Update()
-    {
-        
-    }
-
-    void IGameState.Update()
-    {
-        Update();
+    public void Update() 
+    { 
+    
     }
 }

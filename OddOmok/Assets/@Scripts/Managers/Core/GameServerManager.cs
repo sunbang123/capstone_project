@@ -1,12 +1,11 @@
 using Fusion;
-using Fusion.Photon.Realtime;
 using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Unity.Collections.Unicode;
 
 public class GameServerManager : SimulationBehaviour, INetworkRunnerCallbacks
 {
@@ -14,6 +13,7 @@ public class GameServerManager : SimulationBehaviour, INetworkRunnerCallbacks
     private GameObject _playerCharacter;
 
     private PlayerRef _localPlayerRef;
+    private PlayerCharacter.PlayerType _playerType;
 
     private static GameServerManager _gameServer;
     public static GameServerManager GameServer { get { Init(); return _gameServer; } }
@@ -42,28 +42,28 @@ public class GameServerManager : SimulationBehaviour, INetworkRunnerCallbacks
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log("OnPlayerJoined 호출");
-
-        Managers.Event.WaitingForMatch(player);
+        int playerCount = runner.ActivePlayers.Count();
 
         if (player == runner.LocalPlayer)
         {
             _localPlayerRef = player;
+            _playerType = (playerCount == 1) ? PlayerCharacter.PlayerType.BlackPlayer : PlayerCharacter.PlayerType.WhitePlayer;
         }
-
-        int playerCount = runner.ActivePlayers.Count();
 
         Debug.Log($"Player joined: {player.PlayerId} / Total players: {playerCount}");
-
-        if (playerCount == 1)
+        
+        if (playerCount == 2)
         {
-            Debug.Log("2 players joined. Starting game!");
-            StartOmok();
+            Debug.Log("2 players joined. LoadGameScene!");
+            LoadGameScene();
         }
+
+        Managers.Event.WaitingForMatch();
     }
 
-    private void StartOmok()
+    private void LoadGameScene()
     {
-        Debug.Log("StartOmok 호출");
+        Debug.Log("LoadGameScene 호출");
         if (Runner.IsSceneAuthority)
         {
             Runner.LoadScene("GameScene", LoadSceneMode.Single);
@@ -75,7 +75,11 @@ public class GameServerManager : SimulationBehaviour, INetworkRunnerCallbacks
         Debug.Log("OnSceneLoadDone 호출");
         NetworkObject localPlayer = runner.Spawn(_playerCharacter, Vector3.zero, Quaternion.identity, _localPlayerRef);
         runner.SetPlayerObject(_localPlayerRef, localPlayer);
+        localPlayer.GetComponent<PlayerCharacter>().Type = _playerType;
+        localPlayer.GetBehaviour<PlayerCharacter>().InvokeGameStartEvent();
     }
+
+    public PlayerCharacter.PlayerType GetPlayerType() => _playerType;
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {

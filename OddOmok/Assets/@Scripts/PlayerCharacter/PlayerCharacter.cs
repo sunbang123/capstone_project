@@ -1,20 +1,22 @@
 using Fusion;
 using UnityEngine;
+using static BoardManager;
 
 public class PlayerCharacter : NetworkBehaviour
 {
-    [SerializeField]
-    private PlayerType _localPlayerType;
+    [Networked]
+    public PlayerType Type { get; set; }
 
     public enum PlayerType
     {
         None,
-        Black,
-        White,
+        BlackPlayer,
+        WhitePlayer,
     }
 
-    private void Awake()
+    public void InvokeGameStartEvent()
     {
-        
+        Debug.Log($"[Spawned] My PlayerType is {Type}");
+        Managers.Event.GameStart(Type);
     }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
+using static UnityEngine.Rendering.DebugUI;
+using System.Collections;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class ResourceManager
 {
@@ -62,8 +66,15 @@ public class ResourceManager
         var asyncOperation = Addressables.LoadAssetAsync<T>(key);
         asyncOperation.Completed += (op) =>
         {
-            _resources.Add(key, op.Result);
-            _handles.Add(key, asyncOperation);
+            if (!_resources.ContainsKey(key))
+            {
+                _resources.Add(key, op.Result);
+                _handles.Add(key, asyncOperation);
+            }
+            else
+            {
+                Debug.LogWarning($"이미 존재하는 키: {key}");
+            }
             callback?.Invoke(op.Result);
         };
     }

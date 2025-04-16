@@ -6,7 +6,11 @@ public class UI_MatchMakingPopup : UI_Popup
     enum GameObjects
     {
         MatchingImage,
-        MatchingCancelImage,
+    }
+
+    enum Buttons
+    {
+        MatchingCancelButton,
     }
 
     enum Texts
@@ -21,21 +25,25 @@ public class UI_MatchMakingPopup : UI_Popup
             return false;
 
         BindObjects(typeof(GameObjects));
+        BindButtons(typeof(Buttons));
         BindTexts(typeof(Texts));
+        
+        Managers.Event.OnWaitingForMatch -= CancelImageOn;
+        Managers.Event.OnWaitingForMatch += CancelImageOn;
 
         GetText((int)Texts.MatchingCancelText).text = "검색 취소";
-        GetObject((int)GameObjects.MatchingCancelImage).SetActive(false);
 
-        GetObject((int)GameObjects.MatchingCancelImage).BindEvent(async (evt) =>
+        GetButton((int)Buttons.MatchingCancelButton).gameObject.BindEvent(async (evt) =>
         {
             ClosePopupUI();
+            Managers.Event.OnWaitingForMatch -= CancelImageOn;
 
             await GameServerManager.GameServer.Runner.Shutdown();
 
             Debug.Log("매칭 취소");
         });
 
-        Managers.Event.OnWaitingForMatch += ShowMatchingCancelButton;
+        CancelImageOff();
 
         return true;
     }
@@ -49,9 +57,13 @@ public class UI_MatchMakingPopup : UI_Popup
         GetText((int)Texts.MatchingTimeText).text = $"게임 찾는 중 {minutes}:{seconds:00}";
     }
 
-    private void ShowMatchingCancelButton(PlayerRef player)
+    void CancelImageOn()
     {
-        Debug.Log("매칭 취소 버튼 활성화");
-        GetObject((int)GameObjects.MatchingCancelImage).SetActive(true);
+        GetButton((int)Buttons.MatchingCancelButton).gameObject.SetActive(true);
+    }
+
+    void CancelImageOff()
+    {
+        GetButton((int)Buttons.MatchingCancelButton).gameObject.SetActive(false);
     }
 }

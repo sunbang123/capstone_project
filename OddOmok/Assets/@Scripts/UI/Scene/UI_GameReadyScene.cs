@@ -29,7 +29,7 @@ public class UI_GameReadyScene : UI_Scene
         BindButtons(typeof(Buttons));
         BindTexts(typeof(Texts));
 
-        GetButton((int)Buttons.GameStartButton).gameObject.BindEvent(async (evt) =>
+        GetButton((int)Buttons.GameStartButton).gameObject.BindEvent((evt) =>
         {
             if (!Managers.UI.GetPopupStack().OfType<UI_MatchMakingPopup>().Any())
                 SetActiveGameStart();

@@ -23,15 +23,6 @@ public class UI_TitleScene : UI_Scene
         BindObjects(typeof(GameObjects));
         BindTexts(typeof(Texts));
 
-        GetObject((int)GameObjects.StartImage).BindEvent((evt) =>
-        {
-            Debug.Log("ChangeScene");
-            Managers.Scene.LoadScene(EScene.GameReadyScene);
-        });
-
-        GetText((int)GameObjects.StartImage).gameObject.SetActive(false);
-        GetText((int)Texts.DisplayText).text = $"";
-
         StartLoadAssets();
 
         return true;
@@ -47,10 +38,14 @@ public class UI_TitleScene : UI_Scene
             {
                 Managers.Data.Init();
 
-                GetText((int)GameObjects.StartImage).gameObject.SetActive(true);
                 GetText((int)Texts.DisplayText).text = $"Touch To Start";
-                // 애니메이션
                 UI_DOTween.ApplyFadeMovement(GetText((int)Texts.DisplayText), 1.0f);
+
+                GetObject((int)GameObjects.StartImage).BindEvent((evt) =>
+                {
+                    Debug.Log("ChangeScene");
+                    Managers.Scene.LoadScene(EScene.GameReadyScene);
+                });
             }
 
         });

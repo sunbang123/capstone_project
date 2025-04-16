@@ -27,20 +27,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 550129c05ac8c0b4584e3f321b8ebbf7
-    m_Address: GameSide
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - PreLoad
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6243b7caca93ca04d8a7339a2a4fe602
     m_Address: GrassBackground
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86d8258d3bee1674b86e86404eea6d12
+    m_Address: LobbyBackground
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f6576d286c8c904b855004972cc5b36
     m_Address: Title
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PreLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5c9a020bbb20654997ee21aa5369367
+    m_Address: Icon
     m_ReadOnly: 0
     m_SerializedLabels:
     - PreLoad

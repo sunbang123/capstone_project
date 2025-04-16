@@ -3,34 +3,37 @@ using UnityEngine;
 public class PlayerTurnState : IGameState
 {
     private GameStateMachine _stateMachine;
+    private UI_GameScene _uiGameScene;
 
-    public PlayerTurnState(GameStateMachine stateMachine)
+    public PlayerTurnState(GameStateMachine stateMachine, UI_GameScene uiGameScene)
     {
         _stateMachine = stateMachine;
+        _uiGameScene = uiGameScene;
     }
 
-    public void Enter()
+    public void Enter() 
+    { 
+        Debug.Log("내 차례");
+        Managers.Event.OnCellClicked += HandleCellClicked;
+        BoardManager.BM.OnStonePlaced += HandleStonePlace;
+    }
+    public void Update()
     {
-        throw new System.NotImplementedException();
+
+    }
+    public void Exit() 
+    {
+        Managers.Event.OnCellClicked -= HandleCellClicked;
+        BoardManager.BM.OnStonePlaced -= HandleStonePlace;
     }
 
-    public void Exit()
+    private void HandleCellClicked(GameObject go)
     {
-        throw new System.NotImplementedException();
+        _uiGameScene.CellClick(go);
     }
-
-    void Start()
+    private void HandleStonePlace(int y, int x, BoardManager.StoneState state)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    void IGameState.Update()
-    {
-        Update();
+        _uiGameScene.UpdateCell(y, x, state);
+        _stateMachine.ChangeState(new CheckVictoryState(_stateMachine, _uiGameScene, y, x, state));
     }
 }
