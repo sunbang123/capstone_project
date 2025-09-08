@@ -17,5 +17,5 @@
 
 - 뭔가 이상한 오목
 
-- 규칙: [Rulebook](https://github.com/kimhaneu1/capstone_project/wiki/Rulebook)
+- 규칙: [Rulebook](https://github.com/sunbang123/capstone_project/wiki/Rulebook)
 
